@@ -1,0 +1,39 @@
+{
+    "name": "laravel-notification-channels/pushcrew",
+    "description": "PushCrew Notifications driver",
+    "homepage": "https://github.com/laravel-notification-channels/pushcrew",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davide Bellini",
+            "email": "bellini.davide@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/notifications": "^5.3",
+        "illuminate/support": "^5.1|^5.2|^5.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "orchestra/testbench": "^3.3",
+        "phpunit/phpunit": "4.*",
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\PushCrew\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\PushCrew\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
