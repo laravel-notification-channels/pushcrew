@@ -65,7 +65,7 @@ class AccountApproved extends Notification
         return PushCrewMessage::create()
                     ->subject("Your account was approved!")
                     ->body("Click here to see details.")
-                    ->image('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
+                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
                     ->url('http://pushcrew.com');
     }
 }

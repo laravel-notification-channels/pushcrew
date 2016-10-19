@@ -46,6 +46,19 @@ class ChannelTest extends TestCase
         $channel = new PushCrewChannel($client);
         $channel->send(new TestNotifiable, new TestNotification);
     }
+    /** @test */
+    public function it_does_not_send_a_notification_without_subscribers()
+    {
+        $this->app['config']->set('services.pushcrew.token', 'secret-token');
+
+        $client = Mockery::mock(Client::class);
+
+        $client->shouldReceive('post')
+            ->never();
+
+        $channel = new PushCrewChannel($client);
+        $channel->send(new TestNotifiableWithoutSubscribers, new TestNotification);
+    }
 
     /** @test */
     public function it_throws_an_exception_when_it_is_not_configured()
@@ -85,6 +98,16 @@ class TestNotifiable
             'subscriber_1',
             'subscriber_2',
         ];
+    }
+}
+
+class TestNotifiableWithoutSubscribers
+{
+    use \Illuminate\Notifications\Notifiable;
+
+    public function routeNotificationForPushCrew()
+    {
+        return [];
     }
 }
 
