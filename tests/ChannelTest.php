@@ -46,6 +46,7 @@ class ChannelTest extends TestCase
         $channel = new PushCrewChannel($client);
         $channel->send(new TestNotifiable, new TestNotification);
     }
+
     /** @test */
     public function it_does_not_send_a_notification_without_subscribers()
     {
