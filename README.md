@@ -76,7 +76,7 @@ In order to let your Notification know which PushCrew subscriber(s) you are targ
 You can either return a single subscriber-id, or if you want to notify multiple subscriber IDs just return an array containing all IDs.
 
 ```php
-public function routeNotificationForOneSignal()
+public function routeNotificationForPushCrew()
 {
     return 'PUSHCREW_SUBSCRIBER_ID';
 }
