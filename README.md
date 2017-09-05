@@ -1,4 +1,4 @@
-# PushCrew Push Notifications Channel for Laravel 5.3
+# PushCrew Push Notifications Channel for Laravel 5
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/pushcrew/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pushcrew/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
 
-This package makes it easy to send notifications using [PushCrew](https://pushcrew.com) with Laravel 5.3.
+This package makes it easy to send notifications using [PushCrew](https://pushcrew.com) with Laravel 5.
 
 ## Contents
 
@@ -49,9 +49,9 @@ Add your PushCrew API Token to your `config/services.php`:
 Now you can use the channel in your `via()` method inside the notification:
 
 ```php
+use Illuminate\Notifications\Notification;
 use NotificationChannels\PushCrew\PushCrewChannel;
 use NotificationChannels\PushCrew\PushCrewMessage;
-use Illuminate\Notifications\Notification;
 
 class AccountApproved extends Notification
 {
@@ -73,14 +73,16 @@ class AccountApproved extends Notification
 
 In order to let your Notification know which PushCrew subscriber(s) you are targeting, add the `routeNotificationForPushCrew` method to your Notifiable model.
 
-You can either return a single subscriber-id, or if you want to notify multiple subscriber IDs just return an array containing all IDs.
-
 ```php
 public function routeNotificationForPushCrew()
 {
     return 'PUSHCREW_SUBSCRIBER_ID';
 }
 ```
+
+You can either return a single subscriber-id, or if you want to notify multiple subscriber IDs just return an array containing all IDs.
+
+To determine the Subscriber ID read this [FAQ](https://support.pushcrew.com/support/solutions/articles/9000064274-how-can-i-determine-the-subscriber-id-of-a-visitor-to-my-site-).
 
 ### Available Message methods
 
