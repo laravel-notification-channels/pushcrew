@@ -1,4 +1,4 @@
-# PushCrew Push Notifications Channel for Laravel 5
+# VWO Engage (previously PushCrew) Push Notifications Channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -9,7 +9,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/pushcrew/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pushcrew/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
 
-This package makes it easy to send notifications using [PushCrew](https://pushcrew.com) with Laravel 5.
+This package makes it easy to send notifications using [VWO Engage](https://vwo.com/engage) with Laravel.
 
 ## Contents
 
@@ -100,7 +100,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ## Testing
 
 ``` bash
-$ composer test
+$ php vendor/bin/phpunit
 ```
 
 ## Security

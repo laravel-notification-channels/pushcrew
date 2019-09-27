@@ -64,7 +64,7 @@ class ChannelTest extends TestCase
     /** @test */
     public function it_throws_an_exception_when_it_is_not_configured()
     {
-        $this->setExpectedException(InvalidConfiguration::class);
+        $this->expectException(InvalidConfiguration::class);
 
         $channel = new PushCrewChannel(new Client);
         $channel->send(new TestNotifiable, new TestNotification);
@@ -82,7 +82,7 @@ class ChannelTest extends TestCase
             ->once()
             ->andReturn($response);
 
-        $this->setExpectedException(CouldNotSendNotification::class);
+        $this->expectException(CouldNotSendNotification::class);
 
         $channel = new PushCrewChannel($client);
         $channel->send(new TestNotifiable, new TestNotification);
