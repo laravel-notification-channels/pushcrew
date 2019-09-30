@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\PushCrew;
+namespace NotificationChannels\Engage;
 
-class PushCrewMessage
+class EngageMessage
 {
     /**
      * Notification url.

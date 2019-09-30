@@ -1,7 +1,7 @@
 {
-    "name": "laravel-notification-channels/pushcrew",
-    "description": "PushCrew Notifications driver",
-    "homepage": "https://github.com/laravel-notification-channels/pushcrew",
+    "name": "laravel-notification-channels/vwo-engage",
+    "description": "VWO Engage Notifications driver",
+    "homepage": "https://github.com/laravel-notification-channels/vwo-engage",
     "license": "MIT",
     "authors": [
         {
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\PushCrew\\": "src"
+            "NotificationChannels\\Engage\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\PushCrew\\Tests\\": "tests"
+            "NotificationChannels\\Engage\\Tests\\": "tests"
         }
     },
     "config": {

@@ -1,20 +1,20 @@
 # VWO Engage (previously PushCrew) Push Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/vwo-engage.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/vwo-engage)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/pushcrew/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/pushcrew)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/vwo-engage/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/vwo-engage)
 [![StyleCI](https://styleci.io/repos/70140859/shield)](https://styleci.io/repos/70140859)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pushcrew)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/pushcrew/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/pushcrew/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/pushcrew.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/pushcrew)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/vwo-engage.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/vwo-engage)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/vwo-engage/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/vwo-engage/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/vwo-engage.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/vwo-engage)
 
 This package makes it easy to send notifications using [VWO Engage](https://vwo.com/engage) with Laravel.
 
 ## Contents
 
 - [Installation](#installation)
-    - [Setting up the PushCrew service](#setting-up-the-pushcrew-service)
+    - [Setting up the VWO Engage service](#setting-up-the-vwo-engage-service)
 - [Usage](#usage)
     - [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -30,17 +30,17 @@ This package makes it easy to send notifications using [VWO Engage](https://vwo.
 You can install the package via composer:
 
 ``` bash
-composer require laravel-notification-channels/pushcrew
+composer require laravel-notification-channels/vwo-engage
 ```
 
-### Setting up the PushCrew service
+### Setting up the VWO Engage service
 
-Add your PushCrew API Token to your `config/services.php`:
+Add your VWO Engage API Token to your `config/services.php`:
 
 ```php
 // config/services.php
-'pushcrew' => [
-    'token' => env('PUSHCREW_API_TOKEN'),
+'vwo-engage' => [
+    'token' => env('VWO_ENGAGE_API_TOKEN'),
 ]
 ```
 
@@ -50,19 +50,19 @@ Now you can use the channel in your `via()` method inside the notification:
 
 ```php
 use Illuminate\Notifications\Notification;
-use NotificationChannels\PushCrew\PushCrewChannel;
-use NotificationChannels\PushCrew\PushCrewMessage;
+use NotificationChannels\Engage\EngageChannel;
+use NotificationChannels\Engage\EngageMessage;
 
 class AccountApproved extends Notification
 {
     public function via($notifiable)
     {
-        return [PushCrewChannel::class];
+        return [EngageChannel::class];
     }
 
-    public function toPushCrew($notifiable)
+    public function toEngage($notifiable)
     {
-        return PushCrewMessage::create()
+        return EngageMessage::create()
                     ->subject('Your account was approved!')
                     ->body('Click here to see details.')
                     ->icon('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/231px-Laravel.svg.png')
@@ -71,12 +71,12 @@ class AccountApproved extends Notification
 }
 ```
 
-In order to let your Notification know which PushCrew subscriber(s) you are targeting, add the `routeNotificationForPushCrew` method to your Notifiable model.
+In order to let your Notification know which VWO Engage subscriber(s) you are targeting, add the `routeNotificationForEngage` method to your Notifiable model.
 
 ```php
-public function routeNotificationForPushCrew()
+public function routeNotificationForEngage()
 {
-    return 'PUSHCREW_SUBSCRIBER_ID';
+    return 'VWO_ENAGE_SUBSCRIBER_ID';
 }
 ```
 

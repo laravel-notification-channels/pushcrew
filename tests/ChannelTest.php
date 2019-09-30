@@ -1,22 +1,22 @@
 <?php
 
-namespace NotificationChannels\PushCrew\Tests;
+namespace NotificationChannels\Engage\Tests;
 
 use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use NotificationChannels\PushCrew\PushCrewChannel;
-use NotificationChannels\PushCrew\PushCrewMessage;
-use NotificationChannels\PushCrew\Exceptions\InvalidConfiguration;
-use NotificationChannels\PushCrew\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Engage\EngageChannel;
+use NotificationChannels\Engage\EngageMessage;
+use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
+use NotificationChannels\Engage\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
     /** @test */
     public function it_can_send_a_notification()
     {
-        $this->app['config']->set('services.pushcrew.token', 'secret-token');
+        $this->app['config']->set('services.vwo-engage.token', 'secret-token');
 
         $client = Mockery::mock(Client::class);
         $response = new Response(200);
@@ -43,21 +43,21 @@ class ChannelTest extends TestCase
             ])
             ->andReturn($response);
 
-        $channel = new PushCrewChannel($client);
+        $channel = new EngageChannel($client);
         $channel->send(new TestNotifiable, new TestNotification);
     }
 
     /** @test */
     public function it_does_not_send_a_notification_without_subscribers()
     {
-        $this->app['config']->set('services.pushcrew.token', 'secret-token');
+        $this->app['config']->set('services.vwo-engage.token', 'secret-token');
 
         $client = Mockery::mock(Client::class);
 
         $client->shouldReceive('post')
             ->never();
 
-        $channel = new PushCrewChannel($client);
+        $channel = new EngageChannel($client);
         $channel->send(new TestNotifiableWithoutSubscribers, new TestNotification);
     }
 
@@ -66,14 +66,14 @@ class ChannelTest extends TestCase
     {
         $this->expectException(InvalidConfiguration::class);
 
-        $channel = new PushCrewChannel(new Client);
+        $channel = new EngageChannel(new Client);
         $channel->send(new TestNotifiable, new TestNotification);
     }
 
     /** @test */
     public function it_throws_an_exception_when_it_could_not_send_the_notification()
     {
-        $this->app['config']->set('services.pushcrew.token', 'secret-token');
+        $this->app['config']->set('services.vwo-engage.token', 'secret-token');
 
         $client = Mockery::mock(Client::class);
         $response = new Response(400);
@@ -84,7 +84,7 @@ class ChannelTest extends TestCase
 
         $this->expectException(CouldNotSendNotification::class);
 
-        $channel = new PushCrewChannel($client);
+        $channel = new EngageChannel($client);
         $channel->send(new TestNotifiable, new TestNotification);
     }
 }
@@ -93,7 +93,7 @@ class TestNotifiable
 {
     use \Illuminate\Notifications\Notifiable;
 
-    public function routeNotificationForPushCrew()
+    public function routeNotificationForEngage()
     {
         return [
             'subscriber_1',
@@ -106,7 +106,7 @@ class TestNotifiableWithoutSubscribers
 {
     use \Illuminate\Notifications\Notifiable;
 
-    public function routeNotificationForPushCrew()
+    public function routeNotificationForEngage()
     {
         return [];
     }
@@ -114,9 +114,9 @@ class TestNotifiableWithoutSubscribers
 
 class TestNotification extends \Illuminate\Notifications\Notification
 {
-    public function toPushCrew()
+    public function toEngage()
     {
-        return (new PushCrewMessage)
+        return (new EngageMessage)
             ->subject('subject')
             ->icon('icon')
             ->body('body')

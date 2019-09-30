@@ -1,17 +1,17 @@
 <?php
 
-namespace NotificationChannels\PushCrew\Tests;
+namespace NotificationChannels\Engage\Tests;
 
 use Illuminate\Support\Arr;
 use PHPUnit\Framework\TestCase;
-use NotificationChannels\PushCrew\PushCrewMessage;
+use NotificationChannels\Engage\EngageMessage;
 
 class MessageTest extends TestCase
 {
     /** @test */
     public function it_can_accept_a_message_when_constructing_a_message()
     {
-        $message = new PushCrewMessage('body');
+        $message = new EngageMessage('body');
 
         $this->assertEquals('body', Arr::get($message->toArray(), 'message'));
     }
@@ -19,7 +19,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_provides_a_create_method()
     {
-        $message = PushCrewMessage::create('body');
+        $message = EngageMessage::create('body');
 
         $this->assertEquals('body', Arr::get($message->toArray(), 'message'));
     }
@@ -27,7 +27,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_can_set_the_body()
     {
-        $message = new PushCrewMessage;
+        $message = new EngageMessage;
 
         $message->body('body');
 
@@ -37,7 +37,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_can_set_the_subject()
     {
-        $message = new PushCrewMessage;
+        $message = new EngageMessage;
 
         $message->subject('subject');
 
@@ -47,7 +47,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_can_set_the_url()
     {
-        $message = new PushCrewMessage;
+        $message = new EngageMessage;
 
         $message->url('url');
 
@@ -57,7 +57,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_can_set_the_icon()
     {
-        $message = new PushCrewMessage;
+        $message = new EngageMessage;
 
         $message->icon('icon');
 

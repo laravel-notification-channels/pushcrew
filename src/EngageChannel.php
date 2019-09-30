@@ -1,13 +1,13 @@
 <?php
 
-namespace NotificationChannels\PushCrew;
+namespace NotificationChannels\Engage;
 
 use GuzzleHttp\Client;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\PushCrew\Exceptions\InvalidConfiguration;
-use NotificationChannels\PushCrew\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
+use NotificationChannels\Engage\Exceptions\CouldNotSendNotification;
 
-class PushCrewChannel
+class EngageChannel
 {
     const API_ENDPOINT = 'https://pushcrew.com/api/v1/send/list';
 
@@ -28,22 +28,22 @@ class PushCrewChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @throws \NotificationChannels\PushCrew\Exceptions\InvalidConfiguration
-     * @throws \NotificationChannels\PushCrew\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\Engage\Exceptions\InvalidConfiguration
+     * @throws \NotificationChannels\Engage\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
-        $subscribers = collect($notifiable->routeNotificationFor('PushCrew'));
+        $subscribers = collect($notifiable->routeNotificationFor('Engage'));
 
         if (! $subscribers->count()) {
             return;
         }
 
-        if (! $token = config('services.pushcrew.token')) {
+        if (! $token = config('services.vwo-engage.token')) {
             throw InvalidConfiguration::configurationNotSet();
         }
 
-        $message = $notification->toPushCrew($notifiable);
+        $message = $notification->toEngage($notifiable);
 
         $data = $message->toArray() + [
             'subscriber_list' => json_encode([
