@@ -82,7 +82,7 @@ public function routeNotificationForEngage()
 
 You can either return a single subscriber-id, or if you want to notify multiple subscriber IDs just return an array containing all IDs.
 
-To determine the Subscriber ID read this [FAQ](https://support.pushcrew.com/support/solutions/articles/9000064274-how-can-i-determine-the-subscriber-id-of-a-visitor-to-my-site-).
+To determine the Subscriber ID read this [FAQ](https://help.vwo.com/hc/en-us/articles/360007743913-How-can-I-determine-the-Subscriber-ID-of-a-visitor-to-my-site-).
 
 ### Available Message methods
 
