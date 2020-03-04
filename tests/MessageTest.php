@@ -3,8 +3,8 @@
 namespace NotificationChannels\Engage\Tests;
 
 use Illuminate\Support\Arr;
-use PHPUnit\Framework\TestCase;
 use NotificationChannels\Engage\EngageMessage;
+use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
 {

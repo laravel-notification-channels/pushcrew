@@ -2,14 +2,14 @@
 
 namespace NotificationChannels\Engage\Tests;
 
-use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Orchestra\Testbench\TestCase;
+use Mockery;
 use NotificationChannels\Engage\EngageChannel;
 use NotificationChannels\Engage\EngageMessage;
-use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
 use NotificationChannels\Engage\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
+use Orchestra\Testbench\TestCase;
 
 class ChannelTest extends TestCase
 {

@@ -4,8 +4,8 @@ namespace NotificationChannels\Engage;
 
 use GuzzleHttp\Client;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
 use NotificationChannels\Engage\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Engage\Exceptions\InvalidConfiguration;
 
 class EngageChannel
 {
